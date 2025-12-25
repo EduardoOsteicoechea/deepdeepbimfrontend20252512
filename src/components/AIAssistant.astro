@@ -1,0 +1,55 @@
+<div id="ai-widget">
+  <button id="ai-trigger" aria-label="AI Assistant">
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+      ></path>
+    </svg>
+  </button>
+</div>
+
+<style>
+  #ai-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+  }
+  #ai-trigger {
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("ai-trigger");
+  if (btn) {
+    btn.addEventListener(
+      "mouseenter",
+      () => {
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.href = "/scripts/heavy-chatbot.js";
+        document.head.appendChild(link);
+      },
+      { once: true }
+    );
+
+    btn.addEventListener("click", async () => {
+      const { initChat } = await import("../scripts/AIAssistant.js");
+      initChat();
+    });
+  }
+</script>

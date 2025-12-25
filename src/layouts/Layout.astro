@@ -1,0 +1,30 @@
+---
+import AiAssistant from "../components/AIAssistant.astro";
+import Menu from "../components/Menu.astro";
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Menu />
+    <AiAssistant />
+    <slot />
+    <style is:global>
+      body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+      }
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+    </style>
+  </body>
+</html>

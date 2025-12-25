@@ -1,0 +1,32 @@
+
+<nav class="nav-bar">
+  <a href="/">Home</a>
+  <a href="/services">Services</a>
+  <a href="/talent">Talent</a>
+  <a href="/contact">Contact</a>
+  
+  <div class="session-container">
+    <a href="/login" class="guest-only">Log In</a>
+    <a href="/dashboard" class="user-only">My Dashboard</a>
+  </div>
+</nav>
+
+<style>
+  /* Default: Assume user is GUEST */
+  .user-only { display: none; }
+  .guest-only { display: inline-block; }
+
+  /* State: When <body> has class 'logged-in' */
+  :global(body.logged-in) .user-only { display: inline-block; }
+  :global(body.logged-in) .guest-only { display: none; }
+  
+  .nav-bar { display: flex; gap: 1rem; padding: 1rem; border-bottom: 1px solid #eee; }
+</style>
+
+<script is:inline>
+  // Check if session cookie or token exists
+  // Replace 'session_token' with your actual cookie name
+  if (document.cookie.split(';').some((item) => item.trim().startsWith('session_token='))) {
+    document.body.classList.add('logged-in');
+  }
+</script>
